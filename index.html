@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Grocery Delivery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <nav class="navbar">
+      <a href="#" class="logo">QuickGrocery</a>
+      <ul class="nav-links">
+        <li><a href="#" onclick="showSection('home')">Home</a></li>
+        <li><a href="#" onclick="showSection('categories-section')">Categories</a></li>
+        <li><a href="#" onclick="showSection('favorites-section')">Favourites</a></li>
+        <li><a href="#" onclick="showSection('cart-section')">Cart</a></li>
+      </ul>
+    </nav>
+    
+    <div class="search-container">
+        <input type="text" placeholder="Search for products..." class="search-bar">
+        <button class="search-button">
+          <i class="search-icon">&#128269;</i>
+        </button>
+      </div>
+    </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Fresh Groceries Delivered in 10 minutes</h1>
+    <p>Your daily essentials at your fingertips</p>
+  </section>
+
+  <div id="categories-section" style="display: none;">
+    <h2>Categories</h2>
+    <div class="categories-list">
+        <button onclick="showCategory('Vegetables')">Vegetables</button>
+        <button onclick="showCategory('Fruits')">Fruits</button>
+        <button onclick="showCategory('Daily Essentials')">Daily Essentials</button>
+        <button onclick="showCategory('Snacks')">Snacks</button>
+        <button onclick="showCategory('Beverages')">Beverages</button>
+    </div>
+</div>
+
+<div id="favorites-section" style="display: none;">
+    <h2>Your Favourites</h2>
+    <div id="favorite-items"></div>
+</div>
+
+<div id="notification" class="notification">
+    <span id="notification-message">Item added to cart!</span>
+</div>
+
+<div id="cart-section" style="display: none;">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-summary">
+        <h3>Coupons & Offers</h3>
+        <!-- Add coupon functionality -->
+        <input type="text" placeholder="Enter coupon code">
+    </div>
+    <div class="delivery-address">
+        <h3>Delivery Address</h3>
+        <input type="text" placeholder="Enter address">
+    </div>
+    <button onclick="processPayment()">Click to Pay</button>
+</div>
+
+  <section id="categories-section" style="display: none;">
+    <h2>Categories</h2>
+    <div class="category-grid">
+        <div class="category-item">Fruits</div>
+        <div class="category-item">Vegetables</div>
+        <div class="category-item">Snacks</div>
+        <div class="category-item">Dairy Products</div>
+
+    </div>
+</section>
+
+<section class="carousel">
+    <div class="slides">
+        <div class="carousel-slide">
+            <img class="carousel-image" src="images/carousel/vegetables.jpeg" alt="Vegetables">
+            <p class="carousel-text">Fresh Vegetables</p>
+        </div>
+        <div class="carousel-slide">
+            <img class="carousel-image" src="images/carousel/snacks.jpeg" alt="Snacks">
+            <p class="carousel-text">Delicious Snacks</p>
+        </div>
+        <div class="carousel-slide">
+            <img class="carousel-image" src="images/carousel/fruits.jpeg" alt="Fruits">
+            <p class="carousel-text">Juicy Fruits</p>
+        </div>
+        <div class="carousel-slide">
+            <img class="carousel-image" src="images/carousel/cold drinks.jpeg" alt="Cold Drinks">
+            <p class="carousel-text">Refreshing Cold Drinks</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="categories" id="shop">
+    <!-- Fruits Category -->
+    <div class="category">
+      <h2>Fruits</h2>
+      <div class="category-images">
+        
+        <!-- Product 1: Apple -->
+        <div class="product-item">
+            <img src="images/fruits/apple.jpeg" alt="Apple" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Apple</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$2.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Apple')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 2: Avocado -->
+        <div class="product-item">
+            <img src="images/fruits/avacado.jpeg" alt="Avocado" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Avocado</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$3.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Avocado')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 3: Orange -->
+        <div class="product-item">
+            <img src="images/fruits/orange.jpeg" alt="Orange" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Orange</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$1.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Orange')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 4: Watermelon -->
+        <div class="product-item">
+            <img src="images/fruits/watermelon.jpeg" alt="Watermelon" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Watermelon</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$4.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Watermelon')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 5: Fig -->
+        <div class="product-item">
+            <img src="images/fruits/fig.jpeg" alt="Fig" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Fig</p>
+                <div class="product-details">
+                    <span class="product-weight">250g</span>
+                    <span class="product-price">$2.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Fig')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 6: Kiwi -->
+        <div class="product-item">
+            <img src="images/fruits/kiwi.jpeg" alt="Kiwi" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Kiwi</p>
+                <div class="product-details">
+                    <span class="product-weight">4 pieces</span>
+                    <span class="product-price">$3.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Kiwi')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 7: Mango -->
+        <div class="product-item">
+            <img src="images/fruits/mango.jpeg" alt="Mango" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Mango</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$2.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Mango')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 8: Papaya -->
+        <div class="product-item">
+            <img src="images/fruits/papaya.jpeg" alt="Papaya" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Papaya</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$2.79</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Papaya')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 9: Pomegranate -->
+        <div class="product-item">
+            <img src="images/fruits/pomegranate.jpeg" alt="Pomegranate" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Pomegranate</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$3.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Pomegranate')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 10: Strawberry -->
+        <div class="product-item">
+            <img src="images/fruits/strawberry.jpeg" alt="Strawberry" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Strawberry</p>
+                <div class="product-details">
+                    <span class="product-weight">250g</span>
+                    <span class="product-price">$2.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Strawberry')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 11: Banana -->
+        <div class="product-item">
+            <img src="images/fruits/banana.jpeg" alt="Banana" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Banana</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$1.29</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Banana')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 12: Pear -->
+        <div class="product-item">
+            <img src="images/fruits/pear.jpeg" alt="Pear" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Pear</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$1.89</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Pear')">Add to Cart</button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+</section>
+
+
+    <!-- Vegetables Category -->
+<div class="category">
+    <h2>Vegetables</h2>
+    <div class="category-images">
+        
+        <!-- Product 1: Carrot -->
+        <div class="product-item">
+            <img src="images/vegetables/carrot.jpeg" alt="Carrot" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Carrot</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$1.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Carrot')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 2: Broccoli -->
+        <div class="product-item">
+            <img src="images/vegetables/broccoli.jpeg" alt="Broccoli" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Broccoli</p>
+                <div class="product-details">
+                    <span class="product-weight">300g</span>
+                    <span class="product-price">$2.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Broccoli')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 3: Tomato -->
+        <div class="product-item">
+            <img src="images/vegetables/tomato.jpeg" alt="Tomato" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Tomato</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$1.69</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Tomato')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 4: Chilli -->
+        <div class="product-item">
+            <img src="images/vegetables/chilli.jpeg" alt="Chilli" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Chilli</p>
+                <div class="product-details">
+                    <span class="product-weight">200g</span>
+                    <span class="product-price">$0.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Chilli')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 5: Brinjal -->
+        <div class="product-item">
+            <img src="images/vegetables/brinjal.jpeg" alt="Brinjal" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Brinjal</p>
+                <div class="product-details">
+                    <span class="product-weight">400g</span>
+                    <span class="product-price">$1.89</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Brinjal')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 6: Cauliflower -->
+        <div class="product-item">
+            <img src="images/vegetables/cauliflower.jpeg" alt="Cauliflower" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Cauliflower</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$2.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Cauliflower')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 7: Garlic -->
+        <div class="product-item">
+            <img src="images/vegetables/garlic.jpeg" alt="Garlic" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Garlic</p>
+                <div class="product-details">
+                    <span class="product-weight">100g</span>
+                    <span class="product-price">$0.79</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Garlic')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 8: Onion -->
+        <div class="product-item">
+            <img src="images/vegetables/onion.jpeg" alt="Onion" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Onion</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$1.19</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Onion')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 9: Beetroot -->
+        <div class="product-item">
+            <img src="images/vegetables/beetroot.jpeg" alt="Beetroot" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Beetroot</p>
+                <div class="product-details">
+                    <span class="product-weight">500g</span>
+                    <span class="product-price">$1.39</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Beetroot')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 10: Cabbage -->
+        <div class="product-item">
+            <img src="images/vegetables/cabbage.jpeg" alt="Cabbage" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Cabbage</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$2.19</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Cabbage')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 11: Ginger -->
+        <div class="product-item">
+            <img src="images/vegetables/ginger.jpeg" alt="Ginger" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Ginger</p>
+                <div class="product-details">
+                    <span class="product-weight">200g</span>
+                    <span class="product-price">$0.89</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Ginger')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 12: Potato -->
+        <div class="product-item">
+            <img src="images/vegetables/potato.jpeg" alt="Potato" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Potato</p>
+                <div class="product-details">
+                    <span class="product-weight">1kg</span>
+                    <span class="product-price">$1.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Potato')">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+      
+      <<!-- Beverages Category -->
+<div class="category">
+    <h2>Beverages</h2>
+    <div class="category-images">
+        
+        <!-- Product 1: 7up -->
+        <div class="product-item">
+            <img src="images/beverages/7up.jpeg" alt="7up" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">7up</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('7up')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 2: Coca-Cola -->
+        <div class="product-item">
+            <img src="images/beverages/coca cola.jpeg" alt="Coca Cola" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Coca-Cola</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Coca-Cola')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 3: Frooti -->
+        <div class="product-item">
+            <img src="images/beverages/frooti.jpeg" alt="Frooti" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Frooti</p>
+                <div class="product-details">
+                    <span class="product-weight">200ml</span>
+                    <span class="product-price">$0.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Frooti')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 4: Fanta -->
+        <div class="product-item">
+            <img src="images/beverages/fanta.jpeg" alt="Fanta" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Fanta</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.79</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Fanta')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 5: Maaza -->
+        <div class="product-item">
+            <img src="images/beverages/maaza.jpeg" alt="Maaza" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Maaza</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.89</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Maaza')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 6: Limca -->
+        <div class="product-item">
+            <img src="images/beverages/limca.jpeg" alt="Limca" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Limca</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.69</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Limca')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 7: Mirinda -->
+        <div class="product-item">
+            <img src="images/beverages/mirinda.jpeg" alt="Mirinda" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Mirinda</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.59</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Mirinda')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 8: Mountain Dew -->
+        <div class="product-item">
+            <img src="images/beverages/mountain dew.jpeg" alt="Mountain Dew" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Mountain Dew</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.79</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Mountain Dew')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 9: Pepsi -->
+        <div class="product-item">
+            <img src="images/beverages/pepsi.jpeg" alt="Pepsi" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Pepsi</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Pepsi')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 10: Sprite -->
+        <div class="product-item">
+            <img src="images/beverages/sprite.jpeg" alt="Sprite" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Sprite</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.59</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Sprite')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 11: Thums Up -->
+        <div class="product-item">
+            <img src="images/beverages/thums up.jpeg" alt="Thums Up" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Thums Up</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.69</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Thums Up')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 12: Tropricon -->
+        <div class="product-item">
+            <img src="images/beverages/tropricon.jpeg" alt="Tropricon" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Tropricon</p>
+                <div class="product-details">
+                    <span class="product-weight">500ml</span>
+                    <span class="product-price">$1.79</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Tropricon')">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+      
+      <!-- Snacks Category -->
+<div class="category">
+    <h2>Snacks</h2>
+    <div class="category-images">
+        
+        <!-- Product 1: Kurkure -->
+        <div class="product-item">
+            <img src="images/snacks/kurkure.jpeg" alt="Kurkure" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Kurkure</p>
+                <div class="product-details">
+                    <span class="product-weight">100g</span>
+                    <span class="product-price">$1.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Kurkure')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 2: Lays -->
+        <div class="product-item">
+            <img src="images/snacks/lays.jpeg" alt="Lays" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Lays</p>
+                <div class="product-details">
+                    <span class="product-weight">150g</span>
+                    <span class="product-price">$2.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Lays')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 3: Dairy Milk -->
+        <div class="product-item">
+            <img src="images/snacks/dairy milk.jpeg" alt="Dairy Milk" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Dairy Milk</p>
+                <div class="product-details">
+                    <span class="product-weight">120g</span>
+                    <span class="product-price">$1.89</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Dairy Milk')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 4: Maggie -->
+        <div class="product-item">
+            <img src="images/snacks/maggie.jpeg" alt="Maggie" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Maggie</p>
+                <div class="product-details">
+                    <span class="product-weight">100g</span>
+                    <span class="product-price">$0.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Maggie')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 5: Pasta -->
+        <div class="product-item">
+            <img src="images/snacks/pasta.jpeg" alt="Pasta" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Pasta</p>
+                <div class="product-details">
+                    <span class="product-weight">200g</span>
+                    <span class="product-price">$3.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Pasta')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 6: Parle G -->
+        <div class="product-item">
+            <img src="images/snacks/parle g.jpeg" alt="Parle G" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Parle G</p>
+                <div class="product-details">
+                    <span class="product-weight">150g</span>
+                    <span class="product-price">$1.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Parle G')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 7: Pringles -->
+        <div class="product-item">
+            <img src="images/snacks/pringles.jpeg" alt="Pringles" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Pringles</p>
+                <div class="product-details">
+                    <span class="product-weight">150g</span>
+                    <span class="product-price">$2.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Pringles')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 8: Soya Sticks -->
+        <div class="product-item">
+            <img src="images/snacks/soya sticks.jpeg" alt="Soya Sticks" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Soya Sticks</p>
+                <div class="product-details">
+                    <span class="product-weight">100g</span>
+                    <span class="product-price">$2.49</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Soya Sticks')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 9: Namkeen -->
+        <div class="product-item">
+            <img src="images/snacks/namkeen.jpeg" alt="Namkeen" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Namkeen</p>
+                <div class="product-details">
+                    <span class="product-weight">200g</span>
+                    <span class="product-price">$3.99</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Namkeen')">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Product 10: Yippee -->
+        <div class="product-item">
+            <img src="images/snacks/yippee.jpeg" alt="Yippee" class="product-image">
+            <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+            <div class="product-info">
+                <p class="product-name">Yippee</p>
+                <div class="product-details">
+                    <span class="product-weight">85g</span>
+                    <span class="product-price">$0.89</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('Yippee')">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+      <div class="category">
+        <h2>Daily Essentials</h2>
+        <div class="category-images">
+          
+            <!-- Product 1: Cheese -->
+            <div class="product-item">
+                <img src="images/daily-essentials/cheese.jpeg" alt="Cheese" class="product-image">
+                <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+                <div class="product-info">
+                    <p class="product-name">Cheese</p>
+                    <div class="product-details">
+                        <span class="product-weight">200g</span>
+                        <span class="product-price">$4.99</span>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Cheese')">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 2: Milk -->
+            <div class="product-item">
+                <img src="images/daily-essentials/milk.jpeg" alt="Milk" class="product-image">
+                <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+                <div class="product-info">
+                    <p class="product-name">Milk</p>
+                    <div class="product-details">
+                        <span class="product-weight">1L</span>
+                        <span class="product-price">$1.49</span>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Milk')">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 3: Paneer -->
+            <div class="product-item">
+                <img src="images/daily-essentials/paneer.jpeg" alt="Paneer" class="product-image">
+                <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+                <div class="product-info">
+                    <p class="product-name">Paneer</p>
+                    <div class="product-details">
+                        <span class="product-weight">250g</span>
+                        <span class="product-price">$3.99</span>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Paneer')">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 4: Curd -->
+            <div class="product-item">
+                <img src="images/daily-essentials/curd.jpeg" alt="Curd" class="product-image">
+                <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+                <div class="product-info">
+                    <p class="product-name">Curd</p>
+                    <div class="product-details">
+                        <span class="product-weight">500g</span>
+                        <span class="product-price">$2.49</span>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Curd')">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 5: Ghee -->
+            <div class="product-item">
+                <img src="images/daily-essentials/ghee.jpeg" alt="Ghee" class="product-image">
+                <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+                <div class="product-info">
+                    <p class="product-name">Ghee</p>
+                    <div class="product-details">
+                        <span class="product-weight">500g</span>
+                        <span class="product-price">$8.99</span>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Ghee')">Add to Cart</button>
+                </div>
+            </div>
+    
+            <!-- Product 6: Butter -->
+            <div class="product-item">
+                <img src="images/daily-essentials/butter.jpeg" alt="Butter" class="product-image">
+                <button class="favourite-btn" onclick="toggleFavourite(this)">★</button>
+                <div class="product-info">
+                    <p class="product-name">Butter</p>
+                    <div class="product-details">
+                        <span class="product-weight">200g</span>
+                        <span class="product-price">$2.99</span>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart('Butter')">Add to Cart</button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+        
+      
+  </section>
+
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-btn" class="close-btn">&times;</span>
+      <h2 id="product-name"></h2>
+      <img id="product-img" src="" alt="Product Image">
+      <p id="product-description"></p>
+      <button class="add-to-cart-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <section class="customer-ratings">
+    <h2>Customer Ratings</h2>
+    <p>⭐⭐⭐⭐⭐ 4.5 / 5</p>
+    <p>"Quick delivery and fresh products!"</p>
+  </section>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
